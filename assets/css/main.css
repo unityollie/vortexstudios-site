@@ -221,7 +221,8 @@ button:hover {
 
 
 .main-page-content {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     width: 100%;
     padding: 20px;
@@ -234,7 +235,6 @@ button:hover {
     box-sizing: border-box;
     text-align: left;
     font-size: 1rem;
-    margin-bottom: 10px; /* Adds space between segments */
 }
 
 .main-page-segment h1,
@@ -250,5 +250,6 @@ button:hover {
     text-align: left;
     font-size: 1rem;
 }
+
 
 
