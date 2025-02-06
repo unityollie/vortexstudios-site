@@ -221,7 +221,7 @@ button:hover {
 
 
 .main-page-content {
-    display: flex;
+    display: block;
     background-color: white;
     width: 100%;
     padding: 20px;
@@ -230,11 +230,11 @@ button:hover {
 }
 
 .main-page-segment {
-    flex: 1;
     padding: 10px;
     box-sizing: border-box;
     text-align: left;
     font-size: 1rem;
+    margin-bottom: 10px; /* Adds space between segments */
 }
 
 .main-page-segment h1,
@@ -251,8 +251,4 @@ button:hover {
     font-size: 1rem;
 }
 
-hr {
-    color: blue;
-    height: 100px;
-    width: 80%;
-}
+
