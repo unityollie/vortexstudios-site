@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0f2d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1s forwards;
+  animation-delay: 2.5s;
+}
+
+.vortex {
+  width: 100px;
+  height: 100px;
+  border: 6px solid transparent;
+  border-top: 6px solid #3c6ff7;
+  border-right: 6px solid #1e3aa9;
+  border-radius: 50%;
+  animation: vortexSpin 2.5s ease-in-out infinite;
+}
+
+@keyframes vortexSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Russo One", sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: #333;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #111;
+}
+
+.main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.content {
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.discord-link {
+  color: #7289da;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.discord-link:hover {
+  color: #5865f2;
+}
+
+@keyframes discord-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(100deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  70% {
+    transform: rotate(260deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.discord-link:hover i {
+  animation: discord-spin 1s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.discord-link i {
+  font-size: 2rem;
+}
+
+.content h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin: 10px 0 5px 0;
+}
+
+input,
+textarea {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #111;
+}
+
+.image {
+  width: 9%;
+  height: auto;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.about-page-content {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.segment {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.segment h1,
+.segment h2 {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.segment p {
+  text-align: center;
+  font-size: 1rem;
+}
