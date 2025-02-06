@@ -218,3 +218,13 @@ button:hover {
     text-align: center;
     font-size: 1rem;
 }
+
+
+.main-page-content {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    color: #333;
+    box-sizing: border-box;
+}
