@@ -1,159 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Vortex Studios &raquo; Community</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script> <!-- bcrypt.js -->
-</head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <div class="main">
-            <h1>Vortex Studios</h1>
-            <img src="assets/img/Vortex_logo.png" draggable="false" class="image">
-        </div>
+      <div class="main">
+        <h1>Vortex Studios</h1>
+        <img src="assets/img/Vortex_logo.png" draggable="false" class="image" />
+      </div>
     </header>
-
     <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="community.html">Community</a></li>
-        </ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
     </nav>
-
     <div class="content">
-        <div class="auth-container" id="authContainer">
-            <div class="login-section" id="loginSection">
-                <h2>Login</h2>
-                <input type="text" placeholder="Username" class="login-input" id="loginUsername">
-                <input type="password" placeholder="Password" class="login-input" id="loginPassword">
-                <button class="login-button" id="loginButton">Login</button>
-                <p>Don't have an account? <button id="showRegister">Register</button></p>
-            </div>
-
-            <div class="register-section" id="registerSection" style="display: none;">
-                <h2>Register</h2>
-                <input type="text" placeholder="Username" class="login-input" id="registerUsername">
-                <input type="password" placeholder="Password" class="login-input" id="registerPassword">
-                <button class="login-button" id="registerButton">Register</button>
-                <p>Already have an account? <button id="showLogin">Login</button></p>
-            </div>
-        </div>
-
-        <div class="update-section" id="updateSection" style="display: none;">
-            <h2>Latest Updates</h2>
-            <button id="logoutButton" style="display: none;">Logout</button>
-            <div class="update-form-container" id="updateForm" style="display: none;">
-                <input type="text" placeholder="Title" class="update-input-title" id="updateTitleInput">
-                <textarea placeholder="Write your update here..." class="update-input-text" id="updateTextInput"></textarea>
-                <button class="update-button" id="postUpdateButton">Post Update</button>
-            </div>
-            <div class="posted-updates" id="postedUpdates"></div>
-        </div>
+      <a href="https://discord.gg/8qrdubPFg4" class="discord-link">
+        <i class="fab fa-discord"></i> Join the Discord server!
+      </a>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (!window.localStorage) {
-                alert("Your browser does not support localStorage. Please enable it or use a modern browser.");
-                return;
-            }
-
-            checkLoginStatus();
-
-            document.getElementById('loginButton').addEventListener('click', login);
-            document.getElementById('registerButton').addEventListener('click', register);
-            document.getElementById('logoutButton').addEventListener('click', logout);
-            document.getElementById('showRegister').addEventListener('click', () => showAuthSection('register'));
-            document.getElementById('showLogin').addEventListener('click', () => showAuthSection('login'));
-            document.getElementById('postUpdateButton').addEventListener('click', postUpdate); // Fix for posting updates
-        });
-
-        async function register() {
-            const username = document.getElementById('registerUsername').value.trim();
-            const password = document.getElementById('registerPassword').value.trim();
-            let users = JSON.parse(localStorage.getItem('users')) || [];
-
-            if (!username || !password) {
-                alert("Username and password cannot be empty.");
-                return;
-            }
-
-            if (users.some(user => user.username === username)) {
-                alert("Username already taken.");
-                return;
-            }
-
-            const hashedPassword = await bcrypt.hash(password, 10);
-            users.push({ username, password: hashedPassword });
-            localStorage.setItem('users', JSON.stringify(users));
-            alert("Registration successful! You can now log in.");
-            showAuthSection('login');
-        }
-
-        async function login() {
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            if (!username || !password) {
-                alert('Please enter a username and password.');
-                return;
-            }
-
-            const user = users.find(u => u.username === username);
-
-            if (user) {
-                const match = await bcrypt.compare(password, user.password);
-                if (match) {
-                    localStorage.setItem('loggedInUser', JSON.stringify(user));
-                    updateUIOnLogin();
-                } else {
-                    alert('Incorrect username or password.');
-                }
-            } else {
-                alert('Incorrect username or password.');
-            }
-        }
-
-        function postUpdate() {
-            const title = document.getElementById('updateTitleInput').value.trim();
-            const content = document.getElementById('updateTextInput').value.trim();
-            if (!title || !content) {
-                alert('Title and content cannot be empty.');
-                return;
-            }
-            const updates = JSON.parse(localStorage.getItem('updates')) || [];
-            updates.push({ title, content, timestamp: new Date().toLocaleString() });
-            localStorage.setItem('updates', JSON.stringify(updates));
-            displayUpdates();
-            document.getElementById('updateTitleInput').value = '';
-            document.getElementById('updateTextInput').value = '';
-        }
-
-        function displayUpdates() {
-            const updates = JSON.parse(localStorage.getItem('updates')) || [];
-            const updatesContainer = document.getElementById('postedUpdates');
-            updatesContainer.innerHTML = updates.map(update => `<div class="update-item"><h3>${update.title}</h3><p>${update.content}</p><small>${update.timestamp}</small></div>`).join('');
-        }
-
-        function updateUIOnLogin() {
-            document.getElementById('authContainer').style.display = 'none';
-            document.getElementById('updateSection').style.display = 'block';
-            document.getElementById('logoutButton').style.display = 'block';
-            displayUpdates();
-            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-            document.getElementById('updateForm').style.display = loggedInUser.username === 'VortexStaff' ? 'block' : 'none';
-        }
-    </script>
-</body>
+  </body>
 </html>
