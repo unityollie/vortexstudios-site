@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vortex Studios &raquo; Contact Us</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("wWZ0oEX7jsuSiOOlw");
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="main">
+        <h1>Vortex Studios</h1>
+        <img src="assets/img/Vortex_logo.png" draggable="false" class="image" />
+      </div>
+    </header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var form = this;
+          emailjs.sendForm("service_dyi37iz", "template_2r3i81t", form).then(
+            function () {
+              alert("Message sent successfully!");
+            },
+            function (error) {
+              alert("Failed to send the message: " + JSON.stringify(error));
+            }
+          );
+        });
+    </script>
+  </body>
+</html>
