@@ -228,3 +228,25 @@ button:hover {
     color: #333;
     box-sizing: border-box;
 }
+
+.main-page-segment {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.main-page-segment h1,
+.main-page-segment h2 {
+    text-align: left;
+    text-decoration: underline;
+    font-size: 1.3rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.main-page-segment p {
+    text-align: left;
+    font-size: 1rem;
+}
