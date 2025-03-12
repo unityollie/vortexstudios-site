@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="mystyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('wallpaper.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="register.htm">Register</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Login Form</h1>
+    <div class="main">
+        <h3>Enter your login credentials</h3>
+        <form class="login" name="lform" action="loginprocess.html" onsubmit="return checkForm()" method="get">
+            <label for="first">Username:</label><br>
+            <input type="text" id="uname" name="uname" placeholder="Enter your Username" />
+            <div id="unError"></div><br><br>
+            
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" />
+            <div id="paerror"></div><br><br>
+            
+            <div class="warp">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function checkForm() {
+            // Get values typed by the user into username and password fields
+            let unv = document.forms["lform"]["uname"].value;
+            let psv = document.forms["lform"]["password"].value;
+            
+            if (unv === "") { 
+                let fne = document.getElementById("unError");
+                fne.innerHTML = "Enter your username";
+                fne.style.color = "red";
+                
+                let fni = document.getElementById("uname");
+                fni.style.backgroundColor = "#ff4d4d";
+                fni.style.borderBlockColor = "black";
+                return false;
+            } else if (psv === "") {
+                let paError = document.getElementById("paerror");
+                paError.innerHTML = "Enter your password";
+                paError.style.color = "red";
+                
+                let psi = document.getElementById("password");
+                psi.style.backgroundColor = "#ff4d4d";
+                psi.style.borderBlockColor = "black";
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

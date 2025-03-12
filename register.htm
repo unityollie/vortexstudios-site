@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    
+        .error {
+            color: red;
+        }
+
+        .input-error {
+            background-color: #ff4d4d;
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a herf="login.htm">Login</a></li>
+        </ul>
+    </nav>
+
+<div class="main">
+    <h2>Registration Form</h2>
+
+    <form class="registration" name="rform" action="registerprocess.php" onsubmit="return checkForm()" method="post">
+        <!-- First Name Input -->
+        <label for="first">First Name:</label><br>
+        <input type="text" id="first" name="first" placeholder="Enter your first name" class=""/>
+        <div id="fnError" class="error"></div><br>
+
+        <!-- Last Name Input -->
+        <label for="last">Last Name:</label><br>
+        <input type="text" id="last" name="last" placeholder="Enter your last name" class=""/>
+        <div id="lnError" class="error"></div><br>
+
+        <!-- Username Input -->
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" placeholder="Enter a username" class=""/>
+        <div id="usError" class="error"></div><br>
+
+        <!-- Password Input -->
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Create your password" 
+        pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$"
+        title="Password must contain at least one number, one alphabet, one symbol, and be at least 8 characters long" 
+        class=""/>
+        <div id="paError" class="error"></div><br>
+
+        <!-- Re-type Password Input -->
+        <label for="repassword">Re-type Password:</label><br>
+        <input type="password" id="repassword" name="repassword" placeholder="Re-type your password" class=""/>
+        <div id="rpError" class="error"></div><br><br>
+
+        <!-- Age Input -->
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" class=""/>
+        <div id="agError" class="error"></div><br>
+
+        <!-- Email Input -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" class=""/>
+        <div id="emError" class="error"></div><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+// JavaScript form validation function
+function checkForm() {
+    const elements = [
+        { id: "first", errorId: "fnError", message: "Please enter your first name" },
+        { id: "last", errorId: "lnError", message: "Please enter your last name" },
+        { id: "username", errorId: "usError", message: "Please enter a username" },
+        { id: "password", errorId: "paError", message: "Please create a password" },
+        { id: "repassword", errorId: "rpError", message: "Please re-type your password" },
+        { id: "age", errorId: "agError", message: "Please enter your age" },
+        { id: "email", errorId: "emError", message: "Please enter your email" },
+    ];
+
+    let valid = true;
+
+    // Loop through all elements to check if they are filled
+    elements.forEach(el => {
+        const inputElement = document.getElementById(el.id);
+        const errorElement = document.getElementById(el.errorId);
+
+        if (!inputElement.value) {
+            errorElement.innerHTML = el.message;
+            inputElement.classList.add('input-error');
+            valid = false;
+        } else {
+            errorElement.innerHTML = "";
+            inputElement.classList.remove('input-error');
+        }
+    });
+
+    // Check if passwords match
+    const password = document.getElementById("password").value;
+    const repassword = document.getElementById("repassword").value;
+
+    if (password && repassword && password !== repassword) {
+        document.getElementById("rpError").innerHTML = "Passwords do not match.";
+        document.getElementById("repassword").classList.add('input-error');
+        valid = false;
+    }
+
+    // Check if the user is at least 18 years old
+    const age = document.getElementById("age").value;
+    if (age && age < 18) {
+        document.getElementById("agError").innerHTML = "You need to be 18 years old or older to register.";
+        valid = false;
+    }
+ 
+    return valid;
+}
+</script>
+</body>
+</html>
+
+
+
