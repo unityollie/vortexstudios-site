@@ -121,14 +121,14 @@ body {
 
 @keyframes discord-spin {
     0% { transform: rotate(0deg); }
-    30% { transform: rotate(100deg); }
+    25% { transform: rotate(90deg); }
     50% { transform: rotate(180deg); }
-    70% { transform: rotate(260deg); }
+    75% { transform: rotate(270deg); }
     100% { transform: rotate(360deg); }
 }
 
 .discord-link:hover i {
-    animation: discord-spin 1s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    animation: discord-spin 2s infinite ease-in-out; 
 }
 
 .discord-link i {

@@ -29,7 +29,7 @@
             <li><a href="register.html">Register</a></li>
         </ul>
     </nav>
-    
+
     <h1>Login Form</h1>
     <div class="main">
         <h3>Enter your login credentials</h3>
@@ -37,11 +37,11 @@
             <label for="first">Username:</label><br>
             <input type="text" id="uname" name="uname" placeholder="Enter your Username" />
             <div id="unError"></div><br><br>
-            
+
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password" placeholder="Enter your Password" />
             <div id="paerror"></div><br><br>
-            
+
             <div class="warp">
                 <button type="submit">Login</button>
             </div>
@@ -53,12 +53,12 @@
             // Get values typed by the user into username and password fields
             let unv = document.forms["lform"]["uname"].value;
             let psv = document.forms["lform"]["password"].value;
-            
-            if (unv === "") { 
+
+            if (unv === "") {
                 let fne = document.getElementById("unError");
                 fne.innerHTML = "Enter your username";
                 fne.style.color = "red";
-                
+
                 let fni = document.getElementById("uname");
                 fni.style.backgroundColor = "#ff4d4d";
                 fni.style.borderBlockColor = "black";
@@ -67,7 +67,7 @@
                 let paError = document.getElementById("paerror");
                 paError.innerHTML = "Enter your password";
                 paError.style.color = "red";
-                
+
                 let psi = document.getElementById("password");
                 psi.style.backgroundColor = "#ff4d4d";
                 psi.style.borderBlockColor = "black";
