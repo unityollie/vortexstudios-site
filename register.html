@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
     <style>
         .error {
             color: red;
@@ -26,55 +28,59 @@
         </ul>
     </nav>
 
-    <div class="main">
+    <section class="main">
         <h2>Registration Form</h2>
 
-        <form class="registration" name="rform" action="registerprocess.php" onsubmit="return checkForm()"
-            method="post">
+        <form class="registration" name="rform" id="registrationForm" action="registerprocess.php" method="post">
             <!-- First Name Input -->
             <label for="first">First Name:</label><br>
-            <input type="text" id="first" name="first" placeholder="Enter your first name" class="" />
-            <div id="fnError" class="error"></div><br>
+            <input type="text" id="first" name="first" placeholder="Enter your first name" />
+            <div id="fnError" class="error" aria-live="assertive"></div><br>
 
             <!-- Last Name Input -->
             <label for="last">Last Name:</label><br>
-            <input type="text" id="last" name="last" placeholder="Enter your last name" class="" />
-            <div id="lnError" class="error"></div><br>
+            <input type="text" id="last" name="last" placeholder="Enter your last name" />
+            <div id="lnError" class="error" aria-live="assertive"></div><br>
 
             <!-- Username Input -->
             <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username" placeholder="Enter a username" class="" />
-            <div id="usError" class="error"></div><br>
+            <input type="text" id="username" name="username" placeholder="Enter a username" />
+            <div id="usError" class="error" aria-live="assertive"></div><br>
 
             <!-- Password Input -->
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password" placeholder="Create your password"
                 pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$"
-                title="Password must contain at least one number, one alphabet, one symbol, and be at least 8 characters long"
-                class="" />
-            <div id="paError" class="error"></div><br>
+                title="Password must contain at least one number, one alphabet, one symbol, and be at least 8 characters long" />
+            <div id="paError" class="error" aria-live="assertive"></div><br>
 
             <!-- Re-type Password Input -->
             <label for="repassword">Re-type Password:</label><br>
-            <input type="password" id="repassword" name="repassword" placeholder="Re-type your password" class="" />
-            <div id="rpError" class="error"></div><br><br>
+            <input type="password" id="repassword" name="repassword" placeholder="Re-type your password" />
+            <div id="rpError" class="error" aria-live="assertive"></div><br><br>
 
             <!-- Age Input -->
             <label for="age">Age:</label><br>
-            <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" class="" />
-            <div id="agError" class="error"></div><br>
+            <input type="number" id="age" name="age" min="0" max="120" placeholder="Enter your age" />
+            <div id="agError" class="error" aria-live="assertive"></div><br>
 
             <!-- Email Input -->
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" placeholder="Enter your email" class="" />
-            <div id="emError" class="error"></div><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email" />
+            <div id="emError" class="error" aria-live="assertive"></div><br>
 
             <button type="submit">Submit</button>
-            <meta http-equiv="Refresh" content="0; url='https://unityollie.github.io/vortexstudios-site/login.html'" />
         </form>
-    </div>
+    </section>
 
     <script>
+        document.getElementById("registrationForm").onsubmit = function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (checkForm()) {
+                this.submit(); // Only submit if the form is valid
+            }
+        };
+
         // JavaScript form validation function
         function checkForm() {
             const elements = [
@@ -120,10 +126,6 @@
                 document.getElementById("agError").innerHTML = "You need to be 18 years old or older to register.";
                 valid = false;
             }
-
-            if (valid) {
-                window.location.href = "login.html";
-            };
 
             return valid;
         }
